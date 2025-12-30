@@ -168,7 +168,6 @@ describe("API Routes", () => {
     });
   });
 
-  // NEW TESTS for the added features
   describe("GET /org/:org/top-stars", () => {
     it("returns top 5 repositories with most stars by default", async () => {
       const response = await app.inject({
@@ -181,13 +180,12 @@ describe("API Routes", () => {
       
       expect(repos.length).toBe(5);
       
-      // Check that repos are sorted by stars in descending order
       for (let i = 1; i < repos.length; i++) {
         expect(repos[i-1].stars >= repos[i].stars).toBe(true);
       }
       
-      expect(repos[0].name).toBe("tutorialspoint"); // Highest stars (123)
-      expect(repos[1].name).toBe("hapistrano"); // Second highest (89)
+      expect(repos[0].name).toBe("tutorialspoint");
+      expect(repos[1].name).toBe("hapistrano");
     });
 
     it("returns custom number of top repositories by stars", async () => {
@@ -216,16 +214,13 @@ describe("API Routes", () => {
       expect(response.statusCode).toBe(200);
       const repos = JSON.parse(response.body);
       
-      // Should exclude "hapistrano" (starts with 'h')
       expect(repos.length).toBe(7);
       expect(repos.some((r: any) => r.name === "hapistrano")).toBe(false);
       
-      // Check alphabetical order
       const names = repos.map((r: any) => r.name);
       const sortedNames = [...names].sort();
       expect(names).toEqual(sortedNames);
       
-      // First should be "cassava-conduit" alphabetically
       expect(repos[0].name).toBe("cassava-conduit");
     });
 

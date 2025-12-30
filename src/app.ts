@@ -61,7 +61,6 @@ export function buildApp() {
     return { org, totalStars: sumStars(repos) };
   });
 
-  // NEW: Top 5 repositories with more stars
   app.get("/org/:org/top-stars", async (req) => {
     const org = (req.params as any).org;
     const limit = Number((req.query as any).limit ?? 5);
@@ -70,7 +69,6 @@ export function buildApp() {
     return take(limit)(sortByStarsDesc(repos));
   });
 
-  // NEW: All repositories alphabetically, excluding those starting with 'h'
   app.get("/org/:org/alphabetical", async (req) => {
     const org = (req.params as any).org;
     const raw = await listOrgRepos(org);

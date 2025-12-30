@@ -39,7 +39,6 @@ describe("pure transforms", () => {
     expect(Number.isInteger(total)).toBe(true);
   });
 
-  // NEW TESTS for added functionality
   it("sorts repos by stars in descending order", async () => {
     const raw = await load();
     const repos = raw.map(normalize);
@@ -49,7 +48,7 @@ describe("pure transforms", () => {
       expect(sorted[i-1].stars >= sorted[i].stars).toBe(true);
     }
     
-    expect(sorted[0].name).toBe("tutorialspoint"); // Should have most stars (123)
+    expect(sorted[0].name).toBe("tutorialspoint");
   });
 
   it("sorts repos alphabetically", async () => {
@@ -61,7 +60,7 @@ describe("pure transforms", () => {
     const expectedNames = [...names].sort();
     expect(names).toEqual(expectedNames);
     
-    expect(sorted[0].name).toBe("cassava-conduit"); // First alphabetically
+    expect(sorted[0].name).toBe("cassava-conduit");
   });
 
   it("filters out repos starting with h", async () => {
@@ -69,11 +68,9 @@ describe("pure transforms", () => {
     const repos = raw.map(normalize);
     const filtered = filterOutReposStartingWithH(repos);
     
-    // Should exclude "hapistrano"
     expect(filtered.length).toBe(7);
     expect(filtered.some(r => r.name === "hapistrano")).toBe(false);
     
-    // All remaining should not start with 'h'
     filtered.forEach(repo => {
       expect(repo.name.toLowerCase().startsWith('h')).toBe(false);
     });
@@ -85,9 +82,9 @@ describe("pure transforms", () => {
     const top5 = take(5)(sortByStarsDesc(repos));
     
     expect(top5.length).toBe(5);
-    expect(top5[0].name).toBe("tutorialspoint"); // 123 stars
-    expect(top5[1].name).toBe("hapistrano"); // 89 stars
-    expect(top5[2].name).toBe("stache"); // 45 stars
+    expect(top5[0].name).toBe("tutorialspoint");
+    expect(top5[1].name).toBe("hapistrano");
+    expect(top5[2].name).toBe("stache");
   });
 
   it("combines alphabetical sorting with h-filter", async () => {
