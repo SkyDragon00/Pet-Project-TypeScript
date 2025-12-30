@@ -10,6 +10,9 @@ build/
 *.tsbuildinfo
 *.js.map
 
+# Test coverage reports
+coverage/
+
 # IDE files
 .vscode/
 .idea/

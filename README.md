@@ -19,22 +19,10 @@ npm install
 
 ## How to Run the App
 
-### Development Mode
 ```bash
 npm run dev
 ```
 This will start the server in development mode using `tsx` at `http://localhost:3000`
-
-### Production Mode
-1. Build the project:
-```bash
-npm run build
-```
-
-2. Start the server:
-```bash
-npm start
-```
 
 ## How to Run Tests
 
@@ -148,4 +136,4 @@ fixtures/           # Test data fixtures
 The `/org/:org/top-stars` endpoint returns repositories sorted by star count in descending order. You can specify a custom limit with the `limit` query parameter.
 
 ### 2. Alphabetical Repository List (Excluding 'h')
-The `/org/:org/alphabetical` endpoint returns all repositories sorted alphabetically, but excludes any repository whose name starts with the letter 'h' (case insensitive). This demonstrates advanced filtering and sorting capabilities.
+The `/org/:org/alphabetical` endpoint returns all repositories sorted alphabetically, but excludes any repository whose name starts with the letter 'h' (case insensitive).
